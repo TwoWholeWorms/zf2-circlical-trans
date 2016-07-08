@@ -103,6 +103,27 @@ You need to tweak your translator configuration to support this file structure, 
 
 > A common gotcha here, is that your text domain MUST match the name of your .mo file
 
+If `text_domain` is left out entirely, for example in Third-Party modules which aren't aware of text domains, then those translations will simply be added to the default domain. For example, if a module configures a translation like this:
+
+```php
+'translator' => array(
+        'locale' => 'en_US',
+        'translation_file_patterns' => array(
+            array(
+                'type'          => 'gettext',
+                'base_dir'      => __DIR__ . '/../language',
+                'pattern'       => '%s.mo',
+            ),
+        ),
+    ),
+```
+
+then you can access all its translations directly, eg:
+
+```twig
+{% trans 'My translation %}
+```
+
 
 ### Usage
 
